@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jarry.atmessage.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <com.jarry.atmessage.widget.AtEditText
+            android:id="@+id/at_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:hint="@string/app_name" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:text="@string/app_name" />
+    </LinearLayout>
+
+</LinearLayout>

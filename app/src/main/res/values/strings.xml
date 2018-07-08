@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AtMessage</string>
+    <string name="edit_hint">输入聊天内容</string>
+    <string name="send">发送</string>
+</resources>
