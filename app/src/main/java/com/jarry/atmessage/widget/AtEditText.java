@@ -3,20 +3,28 @@ package com.jarry.atmessage.widget;
 import android.content.Context;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
 
 import com.jarry.atmessage.R;
+import com.jarry.atmessage.bean.AtBean;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Jarry on 2018/7/8.
  */
 
 public class AtEditText extends android.support.v7.widget.AppCompatEditText {
+    //用于@成员
+    private Map<String, Integer> atAcountMap = new HashMap<>();//统计某人被@的次数,key=account,integer,数量
+
     //监听@输入事件
     private OnAtInputListener onAtInputListener;
 
@@ -115,5 +123,61 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
      */
     public interface OnAtInputListener {
         void onAtInput();
+    }
+
+    /**
+     * 设置@成员列表
+     * @param atSomeoneList
+     */
+    public void setAtUsers(List<AtBean> atSomeoneList) {
+        int currIndex = this.getSelectionStart();//光标位置
+        boolean isStart = true;//输入的@符号要去掉
+        List<String> atStringList = new ArrayList<>();
+        StringBuilder atStringBuilder = new StringBuilder();
+        Editable editable = this.getText();
+        for (AtBean item : atSomeoneList) {
+            String account = item.getAccount();
+            saveToMap(account);//保存记录
+            //添加人
+            String atUser = "@" + item.getvAliasName() + " ";
+            atStringList.add(atUser);
+            atStringBuilder.append(atUser);
+            if (isStart) {
+                editable.replace(currIndex - 1, currIndex, atUser);
+                isStart = false;
+            } else {
+                editable.insert(currIndex, atUser);
+            }
+            currIndex = this.getSelectionStart();
+        }
+        //起始位置
+        int startIndex = currIndex - atStringBuilder.length();
+        //输入完文字后，要替换成span
+        for (AtBean item : atSomeoneList) {
+            int itemLen = item.getvAliasName().length() + 2;
+            AtSpan atSpan = new AtSpan(item.getAccount(), item.getvAliasName(), new AtSpan.ClickListener() {
+                @Override
+                public void onClick(String account, String aliasName) {
+//                    LogUtils.e("===AtSpan======点击了===>>>" + aliasName);
+
+                }
+            });
+            this.getText().setSpan(atSpan, startIndex, startIndex + itemLen, SpannableString.SPAN_INCLUSIVE_EXCLUSIVE);
+            startIndex += itemLen;
+        }
+    }
+
+    /**
+     * 保存到map中
+     *
+     * @param account 账户
+     */
+    private void saveToMap(String account) {
+        if (atAcountMap.containsKey(account)) {
+            int count = atAcountMap.get(account);
+            atAcountMap.put(account, count + 1);
+        } else {
+            atAcountMap.put(account, 1);
+        }
     }
 }

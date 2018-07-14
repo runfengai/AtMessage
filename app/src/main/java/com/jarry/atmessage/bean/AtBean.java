@@ -8,17 +8,17 @@ import android.os.Parcelable;
  * created at 2018/7/9 0:25
  */
 
-public class AiteValueBean implements Parcelable {
+public class AtBean implements Parcelable {
     transient boolean isChecked;
     private String account;
     private String vAliasName;
 
-    public AiteValueBean(String account, String vAliasName) {
+    public AtBean(String account, String vAliasName) {
         this.account = account;
         this.vAliasName = vAliasName;
     }
 
-    protected AiteValueBean(Parcel in) {
+    protected AtBean(Parcel in) {
         account = in.readString();
         vAliasName = in.readString();
     }
@@ -31,15 +31,15 @@ public class AiteValueBean implements Parcelable {
         isChecked = checked;
     }
 
-    public static final Creator<AiteValueBean> CREATOR = new Creator<AiteValueBean>() {
+    public static final Creator<AtBean> CREATOR = new Creator<AtBean>() {
         @Override
-        public AiteValueBean createFromParcel(Parcel in) {
-            return new AiteValueBean(in);
+        public AtBean createFromParcel(Parcel in) {
+            return new AtBean(in);
         }
 
         @Override
-        public AiteValueBean[] newArray(int size) {
-            return new AiteValueBean[size];
+        public AtBean[] newArray(int size) {
+            return new AtBean[size];
         }
     };
 

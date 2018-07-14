@@ -20,9 +20,15 @@
             android:hint="@string/app_name" />
 
         <android.support.v7.widget.AppCompatButton
-            android:layout_width="75dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="@string/app_name" />
+            android:text="@string/send" />
     </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/rv"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
