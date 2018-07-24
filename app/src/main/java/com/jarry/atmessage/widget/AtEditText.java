@@ -55,6 +55,15 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
         this.onAtInputListener = onAtInputListener;
     }
 
+    public boolean checkAtMsg() {
+        Editable text = getText();
+        AtSpan[] atSpans = text.getSpans(0, text.length(), AtSpan.class);
+        if (atSpans != null && atSpans.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
     private void setAtListener() {
 
         //监听@输入
@@ -127,6 +136,7 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
 
     /**
      * 设置@成员列表
+     *
      * @param atSomeoneList
      */
     public void setAtUsers(List<AtBean> atSomeoneList) {

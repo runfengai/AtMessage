@@ -3,21 +3,34 @@ package com.jarry.atmessage;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.view.View;
+import android.widget.Button;
 
 import com.jarry.atmessage.adapter.ChatAdapter;
 import com.jarry.atmessage.bean.AtBean;
 import com.jarry.atmessage.bean.ChatInfo;
 import com.jarry.atmessage.widget.AtEditText;
+import com.jarry.atmessage.widget.AtSpan;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AtEditText.OnAtInputListener {
+/**
+ * demo示例
+ *
+ * @Author jarry
+ * created at 2018/7/24 23:14
+ */
+
+public class MainActivity extends AppCompatActivity implements AtEditText.OnAtInputListener, View.OnClickListener {
     private static final int AT_CODE = 1;
     private AtEditText atEditText;
     private List<ChatInfo> datas = new ArrayList<>();
     private RecyclerView recyclerView;
+    private AppCompatButton sendBtn;
     private ChatAdapter chatAdapter;
 
     @Override
@@ -26,9 +39,11 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
         setContentView(R.layout.activity_main);
         atEditText = findViewById(R.id.at_edit_text);
         recyclerView = findViewById(R.id.rv);
+        sendBtn = findViewById(R.id.send);
         chatAdapter = new ChatAdapter(this, datas);
         recyclerView.setAdapter(chatAdapter);
         atEditText.setOnAtInputListener(this);
+        sendBtn.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +61,17 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
             List<AtBean> list = (List<AtBean>) data.getSerializableExtra(UserListActivity.EXTRA_USER);
             if (list != null && list.size() > 0) {
                 atEditText.setAtUsers(list);
+            }
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.send) {
+            if (atEditText.checkAtMsg()) {//@消息
+                ChatInfo chatInfo = new ChatInfo();
+                chatInfo.content = atEditText.getText().toString();
+                datas.add(chatInfo);
             }
         }
     }
