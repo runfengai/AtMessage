@@ -9,13 +9,17 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jarry.atmessage.R;
 import com.jarry.atmessage.bean.AtBean;
+import com.jarry.atmessage.bean.AtMessage;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Jarry on 2018/7/8.
@@ -62,6 +66,39 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
             return true;
         }
         return false;
+    }
+
+    public AtMessage getAtMsg() {
+        Editable text = getText();
+        AtSpan[] atSpans = text.getSpans(0, text.length(), AtSpan.class);
+        boolean isAtAll = false;
+        int len = atSpans.length;
+        //@的索引位置
+        int[] atIndexs = new int[len];
+        for (int i = 0; i < len; i++) {
+            AtSpan atSpan = atSpans[i];
+            if (atSpan.isAtAll()) {
+                isAtAll = true;//@全体的优先级最高
+            }
+            //开始做标记，不管是@全体还是@成员的都要做记录
+            atIndexs[i] = text.getSpanStart(atSpan);
+        }
+        AtMessage atMessage;
+        if (isAtAll) {
+            atMessage = new AtMessage(AtMessage.AT_ALL);
+            atMessage.setContent(text.toString());
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("atIndex", atIndexs);//索引位包含@成员的，展示的时候，需要进行解析突出展示
+            atMessage.setExtension(jsonObject.toJSONString());
+        } else {
+            atMessage = new AtMessage(AtMessage.AT_SOMEONE);
+            atMessage.setContent(text.toString());
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("receiver", atMapToArray());
+            jsonObject.put("atIndex", atIndexs);
+            atMessage.setExtension(jsonObject.toJSONString());
+        }
+        return atMessage;
     }
 
     private void setAtListener() {
@@ -178,6 +215,21 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
     }
 
     /**
+     * map转数组
+     *
+     * @return
+     */
+    private String[] atMapToArray() {
+        String[] res = new String[atAcountMap.size()];
+        int index = 0;
+        Set<Map.Entry<String, Integer>> entries = atAcountMap.entrySet();
+        for (Map.Entry<String, Integer> entry : entries) {
+            res[index++] = entry.getKey();
+        }
+        return res;
+    }
+
+    /**
      * 保存到map中
      *
      * @param account 账户
@@ -190,4 +242,20 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
             atAcountMap.put(account, 1);
         }
     }
+
+    /**
+     * 从map中删除
+     *
+     * @param account 账户
+     */
+    private void deleteFromMap(String account) {
+        if (atAcountMap.containsKey(account)) {
+            int count = atAcountMap.get(account);
+            if (count > 1)
+                atAcountMap.put(account, --count);
+            else
+                atAcountMap.remove(account);
+        }
+    }
+
 }

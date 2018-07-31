@@ -12,12 +12,16 @@ import android.widget.Button;
 
 import com.jarry.atmessage.adapter.ChatAdapter;
 import com.jarry.atmessage.bean.AtBean;
+import com.jarry.atmessage.bean.AtMessage;
 import com.jarry.atmessage.bean.ChatInfo;
 import com.jarry.atmessage.widget.AtEditText;
 import com.jarry.atmessage.widget.AtSpan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * demo示例
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
     private RecyclerView recyclerView;
     private AppCompatButton sendBtn;
     private ChatAdapter chatAdapter;
+    //用于@成员
+    private Map<String, Integer> atAcountMap = new HashMap<>();//统计某人被@的次数,key=account,integer,数量
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
         sendBtn = findViewById(R.id.send);
         chatAdapter = new ChatAdapter(this, datas);
 
-        LinearLayoutManager  mLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
         recyclerView.setAdapter(chatAdapter);
@@ -74,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
     public void onClick(View view) {
         if (view.getId() == R.id.send) {
             if (atEditText.checkAtMsg()) {//@消息
+                AtMessage atMessage = atEditText.getAtMsg();
+                datas.add(atMessage);
+                chatAdapter.notifi(datas);
+            } else {//普通消息
                 ChatInfo chatInfo = new ChatInfo();
                 chatInfo.content = atEditText.getText().toString();
                 datas.add(chatInfo);
@@ -81,5 +91,6 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
             }
         }
     }
+
 
 }

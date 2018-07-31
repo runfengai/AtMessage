@@ -10,16 +10,16 @@ import android.view.View;
  */
 
 public class AtSpan extends ClickableSpan {
-    private static final String ACCOUNT_AT_ALL = "ACCOUNT_AT_ALL";
-
+    public static final String STR_AT_ALL = "@全体成员 ";
+    private boolean isAtAll = false;
     private String account;
     private String aliasName;
     ClickListener clickListener;
 
     public static AtSpan createAtAll() {
         AtSpan atSpan = new AtSpan();
-        atSpan.setAliasName("@全体成员 ");
-        atSpan.setAccount(ACCOUNT_AT_ALL);
+        atSpan.setAliasName(STR_AT_ALL);
+        atSpan.setAtAll(true);
         return atSpan;
     }
 
@@ -35,6 +35,14 @@ public class AtSpan extends ClickableSpan {
         this.account = account;
         this.aliasName = aliasName;
         this.clickListener = clickListener;
+    }
+
+    public boolean isAtAll() {
+        return isAtAll;
+    }
+
+    public void setAtAll(boolean atAll) {
+        isAtAll = atAll;
     }
 
     public String getAccount() {
