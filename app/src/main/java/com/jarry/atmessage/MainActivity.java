@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.view.View;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
         recyclerView = findViewById(R.id.rv);
         sendBtn = findViewById(R.id.send);
         chatAdapter = new ChatAdapter(this, datas);
+
+        LinearLayoutManager  mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+
         recyclerView.setAdapter(chatAdapter);
         atEditText.setOnAtInputListener(this);
         sendBtn.setOnClickListener(this);
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
                 ChatInfo chatInfo = new ChatInfo();
                 chatInfo.content = atEditText.getText().toString();
                 datas.add(chatInfo);
+                chatAdapter.notifi(datas);
             }
         }
     }
