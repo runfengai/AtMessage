@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
     private RecyclerView recyclerView;
     private AppCompatButton sendBtn;
     private ChatAdapter chatAdapter;
-    //用于@成员
-    private Map<String, Integer> atAcountMap = new HashMap<>();//统计某人被@的次数,key=account,integer,数量
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements AtEditText.OnAtIn
                 datas.add(chatInfo);
                 chatAdapter.notifi(datas);
             }
+            atEditText.setText("");
         }
     }
 

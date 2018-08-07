@@ -1,6 +1,7 @@
 package com.jarry.atmessage.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.SpannableString;
@@ -32,6 +33,8 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
     //监听@输入事件
     private OnAtInputListener onAtInputListener;
 
+    private int atColor;//@高亮色
+
     public AtEditText(Context context) {
         this(context, null);
     }
@@ -42,6 +45,8 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
 
     public AtEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AtEditText);
+        atColor = typedArray.getColor(R.styleable.AtEditText_atColor, AtSpan.DEFAULT_COLOR);
         init();
     }
 
@@ -208,7 +213,7 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
 //                    LogUtils.e("===AtSpan======点击了===>>>" + aliasName);
 
                 }
-            });
+            }, atColor);
             this.getText().setSpan(atSpan, startIndex, startIndex + itemLen, SpannableString.SPAN_INCLUSIVE_EXCLUSIVE);
             startIndex += itemLen;
         }

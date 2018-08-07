@@ -1,6 +1,7 @@
 package com.jarry.atmessage.widget;
 
 import android.graphics.Color;
+import android.support.annotation.ColorInt;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
@@ -15,6 +16,9 @@ public class AtSpan extends ClickableSpan {
     private String account;
     private String aliasName;
     ClickListener clickListener;
+    public static final int DEFAULT_COLOR = Color.parseColor("#006EFE");
+    //@的颜色
+    private int color = DEFAULT_COLOR;
 
     public static AtSpan createAtAll() {
         AtSpan atSpan = new AtSpan();
@@ -35,6 +39,13 @@ public class AtSpan extends ClickableSpan {
         this.account = account;
         this.aliasName = aliasName;
         this.clickListener = clickListener;
+    }
+
+    public AtSpan(String account, String aliasName, ClickListener clickListener, @ColorInt int color) {
+        this.account = account;
+        this.aliasName = aliasName;
+        this.clickListener = clickListener;
+        this.color = color;
     }
 
     public boolean isAtAll() {
@@ -70,7 +81,7 @@ public class AtSpan extends ClickableSpan {
 
     @Override
     public void updateDrawState(TextPaint ds) {
-        ds.setColor(Color.parseColor("#006EFE"));
+        ds.setColor(color);
     }
 
     public interface ClickListener {

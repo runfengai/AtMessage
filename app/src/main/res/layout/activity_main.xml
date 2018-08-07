@@ -14,20 +14,24 @@
 
         <com.jarry.atmessage.widget.AtEditText
             android:id="@+id/at_edit_text"
+            app:atColor="@android:color/holo_blue_dark"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:hint="@string/app_name" />
+            android:hint="@string/edit_hint" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/send"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="@string/send" />
+            android:background="@drawable/ftx_sel_create_btn"
+            android:text="@string/send"
+            android:textColor="@android:color/white" />
     </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/rv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
