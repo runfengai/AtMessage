@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jarry.atmessage.R;
-import com.jarry.atmessage.bean.AtMessage;
-import com.jarry.atmessage.bean.ChatInfo;
-import com.jarry.atmessage.widget.AtColorSpan;
+import com.jarry.atlibrary.bean.AtMessage;
+import com.jarry.atlibrary.bean.ChatInfo;
+import com.jarry.atlibrary.widget.AtColorSpan;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

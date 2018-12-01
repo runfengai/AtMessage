@@ -1,4 +1,4 @@
-package com.jarry.atmessage.widget;
+package com.jarry.atlibrary.widget;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -105,7 +105,6 @@ public class AtColorSpan extends ReplacementSpan implements ParcelableSpan {
     }
 
     /**
-     * @hide
      */
     public int getSpanTypeIdInternal() {
         return 12;//TextUtils.BACKGROUND_COLOR_SPAN
@@ -116,7 +115,8 @@ public class AtColorSpan extends ReplacementSpan implements ParcelableSpan {
     }
 
     /**
-     * @hide
+     * @param dest  pa
+     * @param flags flag
      */
     public void writeToParcelInternal(Parcel dest, int flags) {
         dest.writeInt(mColor);

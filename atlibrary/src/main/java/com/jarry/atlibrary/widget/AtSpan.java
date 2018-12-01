@@ -1,7 +1,6 @@
-package com.jarry.atmessage.widget;
+package com.jarry.atlibrary.widget;
 
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
@@ -41,7 +40,7 @@ public class AtSpan extends ClickableSpan {
         this.clickListener = clickListener;
     }
 
-    public AtSpan(String account, String aliasName, ClickListener clickListener, @ColorInt int color) {
+    public AtSpan(String account, String aliasName, ClickListener clickListener, int color) {
         this.account = account;
         this.aliasName = aliasName;
         this.clickListener = clickListener;

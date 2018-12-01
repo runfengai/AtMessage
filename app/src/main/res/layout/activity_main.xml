@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
 
-        <com.jarry.atmessage.widget.AtEditText
+        <com.jarry.atlibrary.widget.AtEditText
             android:id="@+id/at_edit_text"
             app:atColor="@android:color/holo_blue_dark"
             android:layout_width="0dp"

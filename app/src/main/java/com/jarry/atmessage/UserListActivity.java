@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jarry.atmessage.adapter.AiteMemAdapter;
-import com.jarry.atmessage.bean.AtBean;
+import com.jarry.atlibrary.bean.AtBean;
 
 import java.util.ArrayList;
 import java.util.List;

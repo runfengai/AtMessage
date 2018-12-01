@@ -1,11 +1,10 @@
-package com.jarry.atmessage.bean;
+package com.jarry.atlibrary.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * @Author jarry
- * created at 2018/7/9 0:25
+ * created by jarry at 2018/7/9 0:25
  */
 
 public class AtBean implements Parcelable {

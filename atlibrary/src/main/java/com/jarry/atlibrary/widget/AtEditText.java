@@ -1,4 +1,4 @@
-package com.jarry.atmessage.widget;
+package com.jarry.atlibrary.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,10 +11,9 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jarry.atmessage.R;
-import com.jarry.atmessage.bean.AtBean;
-import com.jarry.atmessage.bean.AtMessage;
-
+import com.jarry.atlibrary.R;
+import com.jarry.atlibrary.bean.AtBean;
+import com.jarry.atlibrary.bean.AtMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +57,7 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
     /**
      * 设置监听@输入
      *
-     * @param onAtInputListener
+     * @param onAtInputListener 监听
      */
     public void setOnAtInputListener(OnAtInputListener onAtInputListener) {
         this.onAtInputListener = onAtInputListener;
@@ -179,7 +178,7 @@ public class AtEditText extends android.support.v7.widget.AppCompatEditText {
     /**
      * 设置@成员列表
      *
-     * @param atSomeoneList
+     * @param atSomeoneList 成员列表
      */
     public void setAtUsers(List<AtBean> atSomeoneList) {
         int currIndex = this.getSelectionStart();//光标位置

@@ -6,22 +6,16 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.view.View;
-import android.widget.Button;
 
 import com.jarry.atmessage.adapter.ChatAdapter;
-import com.jarry.atmessage.bean.AtBean;
-import com.jarry.atmessage.bean.AtMessage;
-import com.jarry.atmessage.bean.ChatInfo;
-import com.jarry.atmessage.widget.AtEditText;
-import com.jarry.atmessage.widget.AtSpan;
+import com.jarry.atlibrary.bean.AtBean;
+import com.jarry.atlibrary.bean.AtMessage;
+import com.jarry.atlibrary.bean.ChatInfo;
+import com.jarry.atlibrary.widget.AtEditText;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * demo示例

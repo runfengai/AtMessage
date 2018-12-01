@@ -1,4 +1,4 @@
-package com.jarry.atmessage.bean;
+package com.jarry.atlibrary.bean;
 
 import java.io.Serializable;
 

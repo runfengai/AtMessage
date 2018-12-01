@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jarry.atmessage.R;
-import com.jarry.atmessage.bean.AtBean;
+import com.jarry.atlibrary.bean.AtBean;
 
 import java.util.List;
 
