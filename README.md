@@ -8,3 +8,7 @@
 ## 引入方式 ##
 
     implementation 'com.jarry:atlibrary:1.0.0'
+
+## 调用 ##
+
+参考app module
