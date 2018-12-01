@@ -3,4 +3,4 @@
 
 ## 效果图 ##
 
-![image](https://github.com/runfengai/AtMessage/tree/master/readme/picture.png)
+![](readme/picture.png)
