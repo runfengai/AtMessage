@@ -4,3 +4,7 @@
 ## 效果图 ##
 
 ![](readme/picture.png)
+
+## 引入方式 ##
+
+    implementation 'com.jarry:atlibrary:1.0.0'
